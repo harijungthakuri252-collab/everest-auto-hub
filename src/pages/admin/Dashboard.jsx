@@ -66,8 +66,7 @@ export default function Dashboard() {
       </div>
 
       {/* Revenue Chart */}
-      {stats.monthlyData?.length > 0 && (
-        <div className="card" style={{ padding: '1.8rem', marginTop: '2rem' }}>
+      {stats.monthlyData?.length > 0 && (        <div className="card" style={{ padding: '1.8rem', marginTop: '2rem' }}>
           <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
             <FiTrendingUp /> Revenue — Last 6 Months (Delivered Orders)
           </h3>
