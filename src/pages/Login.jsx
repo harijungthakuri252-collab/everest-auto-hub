@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 import './Login.css';
 
 // Reusable password input with show/hide toggle
-function PasswordInput({ value, onChange, placeholder = '••••••••' }) {
+function PasswordInput({ value, onChange, placeholder = '••••••••', autoComplete }) {
   const [show, setShow] = useState(false);
   return (
     <div className="password-wrap">
@@ -17,6 +17,7 @@ function PasswordInput({ value, onChange, placeholder = '•••••••�
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        autoComplete={autoComplete || 'current-password'}
         required
       />
       <button type="button" className="pw-toggle" onClick={() => setShow(s => !s)} tabIndex={-1}>
@@ -94,22 +95,22 @@ function RegisterForm({ onSwitch, onRegistered }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <div className="form-group">
         <label><FiUser /> Full Name</label>
-        <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your full name" required />
+        <input autoComplete="off" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your full name" required />
       </div>
       <div className="form-group">
         <label><FiMail /> Email</label>
-        <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" required />
+        <input type="email" autoComplete="off" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" required />
       </div>
       <div className="form-group">
         <label><FiPhone /> Phone</label>
-        <input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="+61 4XX XXX XXX" />
+        <input autoComplete="off" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="+61 4XX XXX XXX" />
       </div>
       <div className="form-group">
         <label><FiLock /> Password</label>
-        <PasswordInput value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Min 8 chars, include a number" />
+        <PasswordInput autoComplete="new-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Min 8 chars, include a number" />
       </div>
       <button type="submit" className="btn-primary login-btn" disabled={loading}>
         {loading ? 'Sending code...' : 'Create Account'}
