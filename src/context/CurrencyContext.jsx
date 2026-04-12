@@ -1,22 +1,29 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const CURRENCIES = [
-  { code: 'AUD', symbol: 'A$', name: 'Australian Dollar' },
-  { code: 'USD', symbol: '$',  name: 'US Dollar' },
-  { code: 'GBP', symbol: '£',  name: 'British Pound' },
-  { code: 'EUR', symbol: '€',  name: 'Euro' },
+  { code: 'AUD', symbol: 'A$',  name: 'Australian Dollar' },
+  { code: 'USD', symbol: '$',   name: 'US Dollar' },
+  { code: 'GBP', symbol: '\u00a3',   name: 'British Pound' },
+  { code: 'EUR', symbol: '\u20ac',   name: 'Euro' },
   { code: 'NZD', symbol: 'NZ$', name: 'New Zealand Dollar' },
   { code: 'CAD', symbol: 'CA$', name: 'Canadian Dollar' },
   { code: 'NPR', symbol: 'Rs.', name: 'Nepalese Rupee' },
-  { code: 'INR', symbol: '₹',  name: 'Indian Rupee' },
+  { code: 'INR', symbol: '\u20b9',   name: 'Indian Rupee' },
 ];
 
 const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
   const [currency, setCurrency] = useState(() => {
-    const saved = localStorage.getItem('everest_currency');
-    return saved ? JSON.parse(saved) : CURRENCIES[0]; // default AUD
+    try {
+      const saved = localStorage.getItem('everest_currency');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Validate it's a proper currency object
+        if (parsed && parsed.code && parsed.symbol && parsed.name) return parsed;
+      }
+    } catch {}
+    return CURRENCIES[0]; // default AUD
   });
 
   const changeCurrency = (code) => {
@@ -27,9 +34,8 @@ export const CurrencyProvider = ({ children }) => {
     }
   };
 
-  // Format a price with the selected currency symbol
   const formatPrice = (amount) => {
-    if (!amount && amount !== 0) return '';
+    if (amount === null || amount === undefined || amount === '') return '';
     return `${currency.symbol}${Number(amount).toLocaleString()}`;
   };
 
