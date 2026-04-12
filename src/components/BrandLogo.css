@@ -1,0 +1,83 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* "EVEREST AUTO" — solid white, bold italic, clean and sharp */
+.brand-everest-auto {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 3px;
+}
+
+/* "HUB" — white text inside solid orange rounded box */
+.brand-hub-box {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  background: #f97316;
+  border-radius: 7px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Size variants ─────────────────────────────────────── */
+
+.brand-logo--sm .brand-everest-auto {
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+}
+.brand-logo--sm .brand-hub-box {
+  font-size: 0.85rem;
+  padding: 2px 7px 3px;
+  border-radius: 5px;
+}
+
+.brand-logo--md .brand-everest-auto {
+  font-size: 1.3rem;
+}
+.brand-logo--md .brand-hub-box {
+  font-size: 1.15rem;
+  padding: 3px 10px 4px;
+  border-radius: 6px;
+}
+
+.brand-logo--lg .brand-everest-auto {
+  font-size: 1.9rem;
+  letter-spacing: 4px;
+}
+.brand-logo--lg .brand-hub-box {
+  font-size: 1.7rem;
+  padding: 4px 14px 5px;
+  border-radius: 8px;
+}
+
+.brand-logo--xl .brand-everest-auto {
+  font-size: 2.8rem;
+  letter-spacing: 5px;
+}
+.brand-logo--xl .brand-hub-box {
+  font-size: 2.5rem;
+  padding: 5px 18px 7px;
+  border-radius: 10px;
+}
+
+.brand-logo--hero .brand-everest-auto {
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  letter-spacing: 6px;
+}
+.brand-logo--hero .brand-hub-box {
+  font-size: clamp(2rem, 5vw, 4rem);
+  padding: 6px 22px 8px;
+  border-radius: 12px;
+}

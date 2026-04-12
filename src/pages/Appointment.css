@@ -1,0 +1,116 @@
+.appt-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  padding: 60px 20px;
+  align-items: start;
+}
+
+.appt-info {
+  background: var(--dark-3);
+  border: 1px solid rgba(230,57,70,0.2);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: sticky;
+  top: 100px;
+}
+
+.appt-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.appt-info ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.appt-info li { color: var(--gray); font-size: 0.9rem; }
+
+.appt-contact {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.appt-contact p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--light);
+  font-size: 0.9rem;
+}
+
+.appt-contact svg { color: var(--primary); }
+
+.appt-form-box { padding: 2.5rem; }
+
+.appt-form-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.time-slot {
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--gray);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.time-slot:hover { border-color: var(--primary); color: var(--primary); }
+.time-slot.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+.success-msg {
+  text-align: center;
+  padding: 3rem;
+}
+
+.success-msg span { font-size: 4rem; }
+.success-msg h3 { font-family: var(--font-heading); font-size: 1.8rem; margin: 1rem 0 0.5rem; }
+.success-msg p { color: var(--gray); margin-bottom: 2rem; }
+
+@media (max-width: 768px) {
+  .appt-container { grid-template-columns: 1fr; }
+  .appt-info { position: static; }
+}
+
+/* Booked/unavailable slots */
+.time-slot.booked {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.2);
+  cursor: not-allowed;
+  position: relative;
+  text-decoration: line-through;
+}
+
+.slot-booked-label {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+.time-slot:disabled { pointer-events: none; }

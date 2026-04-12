@@ -1,0 +1,132 @@
+.modal-wide { max-width: 700px; }
+
+/* Image upload */
+.upload-section { margin-bottom: 1.5rem; }
+
+.upload-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+.image-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.preview-img-wrap {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.preview-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-img-btn {
+  position: absolute;
+  top: 4px; right: 4px;
+  background: rgba(0,0,0,0.7);
+  border: none;
+  color: white;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0;
+}
+
+.upload-box {
+  width: 90px; height: 90px;
+  border: 2px dashed rgba(249,115,22,0.4);
+  border-radius: 8px;
+  background: rgba(249,115,22,0.05);
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: var(--transition);
+}
+
+.upload-box:hover { border-color: var(--primary); background: rgba(249,115,22,0.1); }
+.upload-box:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Size selector */
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.size-toggle-btn {
+  background: var(--dark-2);
+  border: 2px solid rgba(255,255,255,0.1);
+  color: var(--gray);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 50px;
+  text-align: center;
+}
+
+.size-toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+.size-toggle-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+/* Product thumbnail in table */
+.product-thumb {
+  width: 52px; height: 52px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Size tags in table */
+.size-tags-row { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.size-tag-sm {
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--gray);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* Service image upload (reused in AdminServices) */
+.service-img-upload { margin-bottom: 8px; }
+
+.service-img-preview {
+  position: relative;
+  width: 120px; height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.service-img-preview img { width: 100%; height: 100%; object-fit: cover; }

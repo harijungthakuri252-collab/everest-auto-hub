@@ -1,0 +1,54 @@
+.page-hero {
+  background: linear-gradient(135deg, var(--dark-2) 0%, #1a0a0a 100%);
+  padding: 140px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(230,57,70,0.2);
+}
+
+.service-detail-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sdc-icon { font-size: 3rem; }
+
+.service-detail-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.service-detail-card p {
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.sdc-meta {
+  display: flex;
+  gap: 1.5rem;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.sdc-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.sdc-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.sdc-img img { width: 100%; height: 100%; object-fit: cover; }
