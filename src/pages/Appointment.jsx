@@ -107,7 +107,7 @@ export default function Appointment() {
         <div className="appt-info">
           <h3>{sc.apptWhyTitle || 'Why Book With Us?'}</h3>
           <ul>
-            {(sc.apptWhyPoints?.length > 0
+            {(Array.isArray(sc.apptWhyPoints) && sc.apptWhyPoints.length > 0
               ? sc.apptWhyPoints
               : ['Confirmation email sent instantly','Real-time slot availability','Expert certified mechanics','Transparent pricing','Free vehicle inspection','Cancel up to 2 hours before']
             ).map((pt, i) => <li key={i}>✅ {pt}</li>)}
