@@ -15,8 +15,8 @@ export default function Shop() {
   const [category, setCategory] = useState('All');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-  const [quickPick, setQuickPick] = useState(null); // product for quick size pick
   const [siteContent, setSiteContent] = useState(null);
+  const [selectedSizes, setSelectedSizes] = useState({});
   const { addToCart } = useCart();
   const { formatPrice } = useCurrency();
   const navigate = useNavigate();
@@ -40,32 +40,27 @@ export default function Shop() {
   };
 
   const handleAddToCart = (product) => {
-    if (product.sizes?.length > 1) {
-      setQuickPick({ product, mode: 'cart' });
-    } else {
-      addToCart(product, product.sizes?.[0] || 'One Size', product.colors?.[0] || '');
-      toast.success(`${product.name} added to cart!`);
+    const size = selectedSizes[product._id];
+    if (product.sizes?.length > 0 && !size) {
+      toast.error('Please select a size first');
+      return;
     }
+    addToCart(product, size || 'One Size', product.colors?.[0] || '');
+    toast.success(`${product.name} added to cart!`);
   };
 
   const handleBuyNow = (product) => {
-    if (product.sizes?.length > 1) {
-      setQuickPick({ product, mode: 'buy' });
-    } else {
-      addToCart(product, product.sizes?.[0] || 'One Size', product.colors?.[0] || '');
-      navigate('/checkout');
+    const size = selectedSizes[product._id];
+    if (product.sizes?.length > 0 && !size) {
+      toast.error('Please select a size first');
+      return;
     }
+    addToCart(product, size || 'One Size', product.colors?.[0] || '');
+    navigate('/checkout');
   };
 
-  const confirmQuickPick = (product, size) => {
-    addToCart(product, size, product.colors?.[0] || '');
-    if (quickPick?.mode === 'buy') {
-      setQuickPick(null);
-      navigate('/checkout');
-    } else {
-      toast.success(`${product.name} (${size}) added to cart!`);
-      setQuickPick(null);
-    }
+  const selectSize = (productId, size) => {
+    setSelectedSizes(prev => ({ ...prev, [productId]: size }));
   };
 
   const sc = siteContent || {};
@@ -120,9 +115,22 @@ export default function Shop() {
                     </div>
                     {p.sizes?.length > 0 && (
                       <div className="product-sizes">
-                        {p.sizes.slice(0, 5).map(s => <span key={s} className="size-tag">{s}</span>)}
-                        {p.sizes.length > 5 && <span className="size-tag">+{p.sizes.length - 5}</span>}
+                        {p.sizes.map(s => (
+                          <button
+                            key={s}
+                            type="button"
+                            className={`size-tag size-tag-btn ${selectedSizes[p._id] === s ? 'size-tag-active' : ''}`}
+                            onClick={() => selectSize(p._id, s)}
+                          >
+                            {s}
+                          </button>
+                        ))}
                       </div>
+                    )}
+                    {p.sizes?.length > 0 && !selectedSizes[p._id] && (
+                      <small style={{ color: 'var(--gray)', fontSize: '0.75rem', marginBottom: 6, display: 'block' }}>
+                        👆 Select a size
+                      </small>
                     )}
                     <div className="product-card-actions">
                       <button className="btn-cart-icon" onClick={() => handleAddToCart(p)} title="Add to Cart">
@@ -148,25 +156,7 @@ export default function Shop() {
         )}
       </div>
 
-      {/* Quick size picker modal */}
-      {quickPick && (
-        <div className="modal-overlay" onClick={() => setQuickPick(null)}>
-          <div className="modal" style={{ maxWidth: 380 }} onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>{quickPick.mode === 'buy' ? '⚡ Buy Now — Select Size' : '🛒 Add to Cart — Select Size'}</h3>
-              <button className="modal-close" onClick={() => setQuickPick(null)}>✕</button>
-            </div>
-            <p style={{ color: 'var(--gray)', marginBottom: '1rem', fontSize: '0.9rem' }}>{quickPick.product.name}</p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-              {quickPick.product.sizes.map(s => (
-                <button key={s} className="size-toggle-btn-shop" onClick={() => confirmQuickPick(quickPick.product, s)}>
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* No modal needed - sizes selected inline on card */}
     </div>
   );
 }

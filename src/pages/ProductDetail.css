@@ -166,3 +166,112 @@
 
 .in-stock { color: #2d6a4f; font-weight: 600; }
 .out-stock { color: var(--primary); font-weight: 600; }
+
+/* ── Zoom hint on main image ─────────────────────────── */
+.pd-zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.pd-main-img:hover .pd-zoom-hint { opacity: 1; }
+
+/* ── Lightbox ────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.lightbox-img-wrap {
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img-wrap img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.lightbox-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.lightbox-dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
+}

@@ -62,10 +62,18 @@ export default function Appointment() {
     setForm(updated);
   };
 
+  const [timeSlotError, setTimeSlotError] = useState(false);
+
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.timeSlot) return toast.error('Please select a time slot');
-
+    if (!form.timeSlot) {
+      setTimeSlotError(true);
+      toast.error('Please select a time slot to continue');
+      // Scroll to time slots
+      document.querySelector('.time-slots')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    setTimeSlotError(false);
     setLoading(true);
     try {
       await api.post('/appointments', {
@@ -174,7 +182,7 @@ export default function Appointment() {
                           key={t}
                           disabled={isBooked}
                           className={`time-slot ${isSelected ? 'active' : ''} ${isBooked ? 'booked' : ''}`}
-                          onClick={() => !isBooked && setForm({ ...form, timeSlot: t })}
+                          onClick={() => { if (!isBooked) { setForm({ ...form, timeSlot: t }); setTimeSlotError(false); } }}
                           title={isBooked ? 'This slot is already booked' : t}
                         >
                           {t}
@@ -183,6 +191,11 @@ export default function Appointment() {
                       );
                     })}
                   </div>
+                  {timeSlotError && (
+                    <small style={{ color: '#e63946', marginTop: 8, display: 'flex', alignItems: 'center', gap: 5, fontWeight: 600, fontSize: '0.85rem' }}>
+                      ⚠️ Please select a time slot before confirming
+                    </small>
+                  )}
                   {!form.date || !form.service ? (
                     <small style={{ color: 'var(--gray)', marginTop: 6, display: 'block' }}>
                       Select a service and date to see available slots
@@ -200,10 +213,15 @@ export default function Appointment() {
                 type="submit"
                 className="btn-primary"
                 style={{ width: '100%', justifyContent: 'center', padding: '14px' }}
-                disabled={loading || !form.timeSlot}
+                disabled={loading}
               >
                 {loading ? 'Booking...' : '🗓 Confirm Appointment'}
               </button>
+              {!form.timeSlot && (
+                <p style={{ textAlign: 'center', color: 'var(--gray)', fontSize: '0.8rem', marginTop: 8 }}>
+                  ⏰ Select a time slot above to enable booking
+                </p>
+              )}
             </form>
           )}
         </div>

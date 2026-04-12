@@ -240,3 +240,28 @@
   border-color: var(--primary);
   color: white;
 }
+
+/* Inline size selector on product card */
+.size-tag-btn {
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gray);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-body);
+}
+
+.size-tag-btn:hover {
+  border-color: var(--primary);
+  color: var(--light);
+}
+
+.size-tag-active {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  font-weight: 700;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiShoppingCart, FiArrowLeft, FiMinus, FiPlus, FiCheck } from 'react-icons/fi';
+import { FiShoppingCart, FiArrowLeft, FiMinus, FiPlus, FiCheck, FiZoomIn, FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import api from '../utils/api';
 import { useCart } from '../context/CartContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -15,6 +15,7 @@ export default function ProductDetail() {
   const [qty, setQty] = useState(1);
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
+  const [lightbox, setLightbox] = useState(false);
   const { addToCart } = useCart();
   const { formatPrice } = useCurrency();
 
@@ -51,11 +52,16 @@ export default function ProductDetail() {
         <div className="pd-inner">
           {/* Images */}
           <div className="pd-images">
-            <div className="pd-main-img">
+            <div className="pd-main-img" onClick={() => setLightbox(true)} style={{ cursor: 'zoom-in', position: 'relative' }}>
               {getImageUrl(product.images?.[activeImg]) ? (
                 <img src={getImageUrl(product.images[activeImg])} alt={product.name} />
               ) : (
                 <div className="pd-img-placeholder">👕</div>
+              )}
+              {product.images?.length > 0 && (
+                <div className="pd-zoom-hint">
+                  <FiZoomIn size={18} /> Click to zoom
+                </div>
               )}
             </div>
             {product.images?.length > 1 && (
@@ -152,6 +158,38 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && product.images?.length > 0 && (
+        <div className="lightbox-overlay" onClick={() => setLightbox(false)}>
+          <button className="lightbox-close" onClick={() => setLightbox(false)}><FiX size={24} /></button>
+
+          {product.images.length > 1 && (
+            <button className="lightbox-nav lightbox-prev" onClick={e => { e.stopPropagation(); setActiveImg(i => (i - 1 + product.images.length) % product.images.length); }}>
+              <FiChevronLeft size={28} />
+            </button>
+          )}
+
+          <div className="lightbox-img-wrap" onClick={e => e.stopPropagation()}>
+            <img src={getImageUrl(product.images[activeImg])} alt={product.name} />
+          </div>
+
+          {product.images.length > 1 && (
+            <button className="lightbox-nav lightbox-next" onClick={e => { e.stopPropagation(); setActiveImg(i => (i + 1) % product.images.length); }}>
+              <FiChevronRight size={28} />
+            </button>
+          )}
+
+          {product.images.length > 1 && (
+            <div className="lightbox-dots">
+              {product.images.map((_, i) => (
+                <span key={i} className={`lightbox-dot ${i === activeImg ? 'active' : ''}`}
+                  onClick={e => { e.stopPropagation(); setActiveImg(i); }} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
