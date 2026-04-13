@@ -471,3 +471,17 @@
   .shop-banner-inner { grid-template-columns: 1fr; }
   .cta-inner { flex-direction: column; text-align: center; }
 }
+
+@media (max-width: 480px) {
+  .hero-content { padding-top: 80px; padding-bottom: 40px; }
+  .hero-badge span { font-size: 0.72rem; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+
+  .cta-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .cta-actions { flex-direction: column; gap: 10px; }
+  .cta-actions a, .cta-actions button { width: 100%; justify-content: center; }
+
+  .shop-banner-inner { flex-direction: column; }
+  .mini-product-card { min-width: 140px; }
+}

@@ -182,3 +182,17 @@
 
   .navbar-links.open { transform: translateX(0); }
 }
+
+@media (max-width: 480px) {
+  .navbar-inner { padding: 0 16px; }
+
+  /* Bigger touch targets */
+  .hamburger { padding: 10px; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .cart-btn { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+  /* Sidebar full width on very small screens */
+  .navbar-links { width: 100%; }
+
+  /* User menu */
+  .user-btn { font-size: 0.85rem; padding: 8px 12px; }
+}

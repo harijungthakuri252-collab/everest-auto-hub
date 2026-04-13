@@ -198,3 +198,67 @@ input, textarea, select {
   border-color: var(--primary);
   color: white;
 }
+
+/* ── Global Mobile Fixes ─────────────────────────────── */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  .section-title { font-size: 1.6rem; }
+  .section-subtitle { font-size: 0.9rem; }
+  .section-tag { font-size: 0.7rem; }
+
+  .btn-primary, .btn-outline {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+
+  .page-hero { padding: 100px 0 40px; }
+  .page-hero h1 { font-size: 2rem; }
+
+  /* Cards */
+  .card { padding: 1rem; }
+
+  /* Badges */
+  .badge { font-size: 0.65rem; padding: 3px 8px; }
+
+  /* Tables — make scrollable on mobile */
+  .admin-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .admin-table { min-width: 600px; }
+
+  /* Modal full screen on mobile */
+  .modal-overlay { padding: 10px; align-items: flex-end; }
+  .modal { max-height: 90vh; overflow-y: auto; border-radius: 16px 16px 0 0; }
+
+  /* Grid fixes */
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
+}
+
+@media (max-width: 768px) {
+  /* Admin panel on mobile */
+  .admin-content { padding: 16px; }
+  .admin-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .admin-header h2 { font-size: 1.2rem; }
+
+  /* Bell dropdown */
+  .bell-dropdown { width: 300px; right: -60px; }
+
+  /* Dashboard stats */
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { padding: 1rem; }
+  .stat-card-value { font-size: 1.4rem; }
+
+  /* Shop page */
+  .shop-filters { flex-direction: column; gap: 10px; }
+  .category-filters { flex-wrap: wrap; }
+
+  /* Product detail */
+  .pd-images { margin-bottom: 1.5rem; }
+
+  /* Profile */
+  .profile-layout { grid-template-columns: 1fr; }
+
+  /* Lightbox nav on mobile */
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
