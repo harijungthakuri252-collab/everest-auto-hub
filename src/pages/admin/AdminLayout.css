@@ -554,15 +554,30 @@
 }
 
 /* ── Mobile bottom nav for admin ─────────────────────── */
+.admin-mobile-nav {
+  display: none; /* Hidden by default on desktop */
+}
+
 @media (max-width: 768px) {
+  /* Hide sidebar on mobile */
+  .admin-sidebar {
+    display: none;
+  }
+
+  /* Full width main on mobile */
+  .admin-main {
+    margin-left: 0 !important;
+  }
+
+  /* Show mobile bottom nav */
   .admin-mobile-nav {
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background: var(--dark-2);
     border-top: 1px solid rgba(255,255,255,0.08);
-    display: flex;
     z-index: 200;
     padding: 6px 0 env(safe-area-inset-bottom, 6px);
   }
