@@ -497,3 +497,117 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
+
+/* ── Mobile Admin Layout ─────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hide sidebar on mobile */
+  .admin-sidebar {
+    display: none;
+  }
+
+  /* Full width main on mobile */
+  .admin-main {
+    margin-left: 0 !important;
+  }
+
+  .admin-topbar {
+    padding: 12px 16px;
+  }
+
+  .admin-page-title { font-size: 1rem; }
+
+  .admin-content { padding: 12px; }
+
+  /* Stats grid 2 columns on mobile */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+  }
+
+  .stat-card { padding: 12px; }
+  .stat-card-value { font-size: 1.2rem; }
+  .stat-card-sub { font-size: 0.65rem; }
+
+  /* Admin header stack on mobile */
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  /* Tables scroll horizontally */
+  .admin-table-wrap { overflow-x: auto; }
+  .admin-table { min-width: 500px; }
+
+  /* Modal full screen on mobile */
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal {
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+
+  /* Bell dropdown smaller on mobile */
+  .bell-dropdown { width: 280px; right: -40px; }
+}
+
+/* ── Mobile bottom nav for admin ─────────────────────── */
+@media (max-width: 768px) {
+  .admin-mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark-2);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    z-index: 200;
+    padding: 6px 0 env(safe-area-inset-bottom, 6px);
+  }
+
+  .admin-mobile-nav a,
+  .admin-mobile-nav button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 4px;
+    color: var(--gray);
+    font-size: 0.6rem;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .admin-mobile-nav a.active,
+  .admin-mobile-nav a:hover { color: var(--primary); }
+
+  .admin-mobile-nav svg { font-size: 1.2rem; }
+
+  .admin-mobile-badge {
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 14px);
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 700;
+    min-width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+  }
+
+  /* Add padding to admin content so bottom nav doesn't cover it */
+  .admin-content { padding-bottom: 80px; }
+}

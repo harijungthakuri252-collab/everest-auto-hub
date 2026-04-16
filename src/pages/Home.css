@@ -60,7 +60,9 @@
   font-family: 'Barlow Condensed', sans-serif;
   line-height: 1;
   margin-bottom: 1.5rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .hero-title span { color: white; }

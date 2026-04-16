@@ -81,3 +81,29 @@
   padding: 6px 22px 8px;
   border-radius: 12px;
 }
+
+/* ── Mobile logo fixes ────────────────────────────────── */
+@media (max-width: 480px) {
+  .brand-logo { gap: 4px; }
+
+  .brand-logo--hero .brand-everest-auto {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    letter-spacing: 2px;
+  }
+
+  .brand-logo--hero .brand-hub-box {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    padding: 4px 12px 5px;
+    letter-spacing: 1px;
+  }
+
+  .brand-logo--md .brand-everest-auto {
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .brand-logo--md .brand-hub-box {
+    font-size: 1rem;
+    padding: 2px 8px 3px;
+  }
+}

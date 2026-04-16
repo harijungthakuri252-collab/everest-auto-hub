@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import {
   FiGrid, FiTool, FiCalendar, FiShoppingBag, FiPackage,
   FiUsers, FiStar, FiLogOut, FiMenu, FiX, FiHome, FiSettings,
-  FiLayout, FiEdit, FiBell, FiChevronRight
+  FiLayout, FiEdit, FiBell, FiChevronRight, FiMoreHorizontal
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -182,6 +182,32 @@ export default function AdminLayout() {
           <Outlet />
         </div>
       </main>
+
+      {/* Mobile bottom navigation */}
+      <nav className="admin-mobile-nav">
+        <Link to="/admin" className={isActive('/admin', true) ? 'active' : ''}>
+          <FiGrid size={20} />
+          <span>Dashboard</span>
+        </Link>
+        <Link to="/admin/appointments" className={isActive('/admin/appointments') ? 'active' : ''}>
+          <FiCalendar size={20} />
+          {counts.pendingAppointments > 0 && <span className="admin-mobile-badge">{counts.pendingAppointments}</span>}
+          <span>Bookings</span>
+        </Link>
+        <Link to="/admin/orders" className={isActive('/admin/orders') ? 'active' : ''}>
+          <FiPackage size={20} />
+          {counts.pendingOrders > 0 && <span className="admin-mobile-badge">{counts.pendingOrders}</span>}
+          <span>Orders</span>
+        </Link>
+        <Link to="/admin/products" className={isActive('/admin/products') ? 'active' : ''}>
+          <FiShoppingBag size={20} />
+          <span>Products</span>
+        </Link>
+        <Link to="/admin/settings" className={isActive('/admin/settings') ? 'active' : ''}>
+          <FiMoreHorizontal size={20} />
+          <span>More</span>
+        </Link>
+      </nav>
     </div>
   );
 }
