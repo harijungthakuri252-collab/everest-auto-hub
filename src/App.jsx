@@ -32,6 +32,7 @@ import AdminSettings from './pages/admin/AdminSettings';
 import AdminHomePage from './pages/admin/AdminHomePage';
 import AdminSiteContent from './pages/admin/AdminSiteContent';
 import AdminNotices from './pages/admin/AdminNotices';
+import AdminTransactions from './pages/admin/AdminTransactions';
 import NoticePopup from './components/NoticePopup';
 
 const ProtectedAdmin = ({ children }) => {
@@ -107,6 +108,7 @@ function AppRoutes() {
         <Route path="home" element={<AdminHomePage />} />
         <Route path="site-content" element={<AdminSiteContent />} />
         <Route path="notices" element={<AdminNotices />} />
+        <Route path="transactions" element={<AdminTransactions />} />
       </Route>
     </Routes>
   );

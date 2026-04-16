@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import {
   FiGrid, FiTool, FiCalendar, FiShoppingBag, FiPackage,
   FiUsers, FiStar, FiLogOut, FiMenu, FiX, FiHome, FiSettings,
-  FiLayout, FiEdit, FiBell, FiChevronRight, FiMoreHorizontal
+  FiLayout, FiEdit, FiBell, FiChevronRight, FiMoreHorizontal, FiCreditCard
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -38,6 +38,7 @@ export default function AdminLayout() {
     { path: '/admin/appointments', icon: <FiCalendar />,  label: 'Appointments', badge: counts.pendingAppointments },
     { path: '/admin/products',     icon: <FiShoppingBag />, label: 'Products' },
     { path: '/admin/orders',       icon: <FiPackage />,   label: 'Orders',       badge: counts.pendingOrders },
+    { path: '/admin/transactions', icon: <FiCreditCard />, label: 'Transactions' },
     { path: '/admin/users',        icon: <FiUsers />,     label: 'Users' },
     { path: '/admin/reviews',      icon: <FiStar />,      label: 'Reviews',      badge: counts.pendingReviews },
     { path: '/admin/settings',     icon: <FiSettings />,  label: 'Settings' },
