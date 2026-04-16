@@ -18,6 +18,20 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('everest_cart', JSON.stringify(cart));
   }, [cart]);
 
+  // Sync cart across browser tabs
+  useEffect(() => {
+    const handleStorage = (e) => {
+      if (e.key === 'everest_cart') {
+        try {
+          const updated = JSON.parse(e.newValue);
+          if (Array.isArray(updated)) setCart(updated);
+        } catch {}
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
   const addToCart = (product, size, color, qty = 1) => {
     setCart(prev => {
       const exists = prev.find(i => i._id === product._id && i.size === size && i.color === color);
