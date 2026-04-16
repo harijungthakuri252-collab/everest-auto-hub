@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 export const CURRENCIES = [
   { code: 'AUD', symbol: 'A$',  name: 'Australian Dollar' },
@@ -19,12 +19,28 @@ export const CurrencyProvider = ({ children }) => {
       const saved = localStorage.getItem('everest_currency');
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Validate it's a proper currency object
         if (parsed && parsed.code && parsed.symbol && parsed.name) return parsed;
       }
     } catch {}
     return CURRENCIES[0]; // default AUD
   });
+
+  // On first load, fetch the global default currency from backend
+  useEffect(() => {
+    const hasLocalPref = localStorage.getItem('everest_currency');
+    if (!hasLocalPref) {
+      // No local preference — fetch global default from backend
+      fetch(`${import.meta.env.VITE_API_URL || ''}/api/site-content`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.defaultCurrency) {
+            const found = CURRENCIES.find(c => c.code === data.defaultCurrency);
+            if (found) setCurrency(found);
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
 
   const changeCurrency = (code) => {
     const found = CURRENCIES.find(c => c.code === code);

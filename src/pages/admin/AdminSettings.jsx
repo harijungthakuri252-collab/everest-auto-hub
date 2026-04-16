@@ -155,7 +155,14 @@ export default function AdminSettings() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
           {CURRENCIES.map(c => (
             <button key={c.code} type="button"
-              onClick={() => { changeCurrency(c.code); toast.success(`Currency changed to ${c.name}`); }}
+              onClick={async () => {
+                changeCurrency(c.code);
+                toast.success(`Currency changed to ${c.name}`);
+                // Save as global default to database
+                try {
+                  await api.put('/site-content', { defaultCurrency: c.code });
+                } catch {}
+              }}
               style={{
                 background: currency.code === c.code ? 'rgba(249,115,22,0.15)' : 'var(--dark-2)',
                 border: `2px solid ${currency.code === c.code ? 'var(--primary)' : 'rgba(255,255,255,0.08)'}`,
