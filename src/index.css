@@ -262,3 +262,24 @@ input, textarea, select {
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
 }
+
+/* ── Rich Text rendered output ───────────────────────── */
+.rich-text { line-height: 1.7; color: var(--gray); }
+.rich-text h1, .rich-text h2, .rich-text h3 { color: var(--light); font-family: var(--font-heading); margin: 0.8em 0 0.4em; }
+.rich-text h1 { font-size: 2rem; }
+.rich-text h2 { font-size: 1.5rem; }
+.rich-text h3 { font-size: 1.2rem; }
+.rich-text p { margin: 0 0 0.8em; }
+.rich-text strong { color: var(--light); font-weight: 700; }
+.rich-text em { font-style: italic; }
+.rich-text u { text-decoration: underline; }
+.rich-text s { text-decoration: line-through; }
+.rich-text a { color: var(--primary); text-decoration: underline; }
+.rich-text ul, .rich-text ol { padding-left: 1.5em; margin: 0 0 0.8em; }
+.rich-text li { margin-bottom: 0.3em; }
+.rich-text .ql-align-center { text-align: center; }
+.rich-text .ql-align-right { text-align: right; }
+.rich-text .ql-align-justify { text-align: justify; }
+.rich-text .ql-size-small { font-size: 0.8em; }
+.rich-text .ql-size-large { font-size: 1.3em; }
+.rich-text .ql-size-huge { font-size: 1.8em; }

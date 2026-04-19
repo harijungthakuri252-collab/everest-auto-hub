@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FiPlus, FiTrash2, FiEdit2, FiX, FiImage, FiToggleLeft, FiToggleRight, FiBell } from 'react-icons/fi';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
+import RichTextEditor from '../../components/RichTextEditor';
 
 const IMG_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const imgUrl = (img) => img?.startsWith('/uploads') ? `${IMG_BASE}${img}` : img || null;
@@ -180,7 +181,11 @@ export default function AdminNotices() {
 
             <div className="form-group">
               <label style={{ fontSize: '0.82rem', color: 'var(--gray)', display: 'block', marginBottom: 5 }}>Message (optional)</label>
-              <textarea rows={3} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} style={{ ...inputStyle, resize: 'vertical' }} placeholder="Add more details about this notice..." />
+              <RichTextEditor
+                value={form.message}
+                onChange={(val) => setForm(f => ({ ...f, message: val }))}
+                placeholder="Add more details about this notice..."
+              />
             </div>
 
             {/* Image upload */}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import api from '../utils/api';
+import RichText from './RichText';
 import './NoticePopup.css';
 
 const IMG_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -78,7 +79,7 @@ export default function NoticePopup() {
         {/* Content */}
         <div className="notice-body">
           <h3 className="notice-title">{notice.title}</h3>
-          {notice.message && <p className="notice-message">{notice.message}</p>}
+          {notice.message && <RichText html={notice.message} className="notice-message" />}
         </div>
 
         {/* Pagination if multiple */}

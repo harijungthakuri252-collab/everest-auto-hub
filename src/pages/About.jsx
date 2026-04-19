@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import api from '../utils/api';
+import RichText from '../components/RichText';
 import './About.css';
 
 import { getImageUrl } from '../utils/imageUrl';
@@ -32,9 +33,8 @@ export default function About() {
           <div className="about-text">
             <p className="section-tag">{d.aboutWhoTag || 'Who We Are'}</p>
             <h2 className="section-title">{d.aboutWhoTitle || "Australia's Most Trusted Auto Workshop"}</h2>
-            <p>{d.aboutPara1 || 'Founded over a decade ago, Everest Auto Hub has grown from a small garage to one of Australia\'s most trusted automotive service centres.'}</p>
-            {d.aboutPara2 && <p style={{ marginTop: '1rem' }}>{d.aboutPara2}</p>}
-            <Link to="/appointment" className="btn-primary" style={{ marginTop: '2rem' }}>
+            <RichText html={d.aboutPara1 || 'Founded over a decade ago, Everest Auto Hub has grown from a small garage to one of Australia\'s most trusted automotive service centres.'} />
+            {d.aboutPara2 && <RichText html={d.aboutPara2} style={{ marginTop: '1rem' }} />}            <Link to="/appointment" className="btn-primary" style={{ marginTop: '2rem' }}>
               Book a Service <FiArrowRight />
             </Link>
           </div>

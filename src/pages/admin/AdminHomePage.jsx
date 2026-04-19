@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { FiSave, FiImage, FiX, FiHome } from 'react-icons/fi';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
+import RichTextEditor from '../../components/RichTextEditor';
 
 import { getImageUrl } from '../../utils/imageUrl';
 
@@ -170,37 +171,37 @@ export default function AdminHomePage() {
 
       {/* Hero */}
       <Section title="🚀 Hero Section">
-        <Field label="Badge Text" fieldKey="heroBadge" value={form.heroBadge} onFieldChange={handleFieldChange} />
-        <Field label="Subtitle" fieldKey="heroSubtitle" value={form.heroSubtitle} onFieldChange={handleFieldChange} multiline />
+        <RichTextEditor label="Badge Text" value={form.heroBadge} onChange={(val) => handleFieldChange('heroBadge', val)} placeholder="Badge text above title..." />
+        <RichTextEditor label="Subtitle" value={form.heroSubtitle} onChange={(val) => handleFieldChange('heroSubtitle', val)} placeholder="Hero subtitle text..." />
         <ImageUploader label="Hero Background Image" fieldKey="heroImage" value={form.heroImage} onUpload={handleUpload} onClear={handleClear} />
       </Section>
 
       {/* Services */}
       <Section title="🔧 Services Section">
-        <Field label="Tag (small label above title)" fieldKey="servicesSectionTag" value={form.servicesSectionTag} onFieldChange={handleFieldChange} />
-        <Field label="Title" fieldKey="servicesSectionTitle" value={form.servicesSectionTitle} onFieldChange={handleFieldChange} />
-        <Field label="Subtitle" fieldKey="servicesSectionSubtitle" value={form.servicesSectionSubtitle} onFieldChange={handleFieldChange} multiline />
+        <RichTextEditor label="Tag (small label above title)" value={form.servicesSectionTag} onChange={(val) => handleFieldChange('servicesSectionTag', val)} placeholder="e.g. What We Do" />
+        <RichTextEditor label="Title" value={form.servicesSectionTitle} onChange={(val) => handleFieldChange('servicesSectionTitle', val)} placeholder="e.g. Our Services" />
+        <RichTextEditor label="Subtitle" value={form.servicesSectionSubtitle} onChange={(val) => handleFieldChange('servicesSectionSubtitle', val)} placeholder="Services section subtitle..." />
       </Section>
 
       {/* Why Us */}
       <Section title="✅ Why Choose Us Section">
-        <Field label="Title" fieldKey="whyTitle" value={form.whyTitle} onFieldChange={handleFieldChange} />
-        <Field label="Description" fieldKey="whySubtitle" value={form.whySubtitle} onFieldChange={handleFieldChange} multiline />
+        <RichTextEditor label="Title" value={form.whyTitle} onChange={(val) => handleFieldChange('whyTitle', val)} placeholder="e.g. Built on Trust & Expertise" />
+        <RichTextEditor label="Description" value={form.whySubtitle} onChange={(val) => handleFieldChange('whySubtitle', val)} placeholder="Why choose us description..." />
         <ImageUploader label="Workshop Image" fieldKey="whyImage" value={form.whyImage} onUpload={handleUpload} onClear={handleClear} />
       </Section>
 
       {/* Shop Banner */}
       <Section title="🛍️ Shop Banner Section">
-        <Field label="Tag (small label above title)" fieldKey="shopBannerTag" value={form.shopBannerTag} onFieldChange={handleFieldChange} />
-        <Field label="Title" fieldKey="shopBannerTitle" value={form.shopBannerTitle} onFieldChange={handleFieldChange} />
-        <Field label="Description" fieldKey="shopBannerSubtitle" value={form.shopBannerSubtitle} onFieldChange={handleFieldChange} multiline />
+        <RichTextEditor label="Tag (small label above title)" value={form.shopBannerTag} onChange={(val) => handleFieldChange('shopBannerTag', val)} placeholder="e.g. Everest Clothing" />
+        <RichTextEditor label="Title" value={form.shopBannerTitle} onChange={(val) => handleFieldChange('shopBannerTitle', val)} placeholder="e.g. Wear Your Passion" />
+        <RichTextEditor label="Description" value={form.shopBannerSubtitle} onChange={(val) => handleFieldChange('shopBannerSubtitle', val)} placeholder="Shop banner description..." />
         <ImageUploader label="Banner Background Image" fieldKey="shopBannerImage" value={form.shopBannerImage} onUpload={handleUpload} onClear={handleClear} />
       </Section>
 
       {/* CTA */}
       <Section title="📞 CTA Banner Section">
-        <Field label="Title" fieldKey="ctaTitle" value={form.ctaTitle} onFieldChange={handleFieldChange} />
-        <Field label="Subtitle" fieldKey="ctaSubtitle" value={form.ctaSubtitle} onFieldChange={handleFieldChange} multiline />
+        <RichTextEditor label="Title" value={form.ctaTitle} onChange={(val) => handleFieldChange('ctaTitle', val)} placeholder="e.g. Ready to Book Your Service?" />
+        <RichTextEditor label="Subtitle" value={form.ctaSubtitle} onChange={(val) => handleFieldChange('ctaSubtitle', val)} placeholder="CTA subtitle..." />
         <Field label="Phone Number" fieldKey="ctaPhone" value={form.ctaPhone} onFieldChange={handleFieldChange} />
       </Section>
     </div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { FiSave, FiImage, FiX, FiPlus, FiTrash2 } from 'react-icons/fi';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
+import RichTextEditor from '../../components/RichTextEditor';
 
 const IMG_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const getImageUrl = (img) => img?.startsWith('/uploads') ? `${IMG_BASE}${img}` : img || null;
@@ -188,17 +189,17 @@ export default function AdminSiteContent() {
       {tab === 'about' && (
         <>
           <Section title="Hero Banner">
-            <Field label="Tag (small text above title)" fieldKey="aboutHeroTag" value={form.aboutHeroTag} onChange={handleChange} />
-            <Field label="Title" fieldKey="aboutHeroTitle" value={form.aboutHeroTitle} onChange={handleChange} />
-            <Field label="Subtitle" fieldKey="aboutHeroSubtitle" value={form.aboutHeroSubtitle} onChange={handleChange} />
+            <RichTextEditor label="Tag (small text above title)" value={form.aboutHeroTag} onChange={(val) => handleChange('aboutHeroTag', val)} />
+            <RichTextEditor label="Title" value={form.aboutHeroTitle} onChange={(val) => handleChange('aboutHeroTitle', val)} />
+            <RichTextEditor label="Subtitle" value={form.aboutHeroSubtitle} onChange={(val) => handleChange('aboutHeroSubtitle', val)} />
             <ImageUploader label="Hero Background Image" fieldKey="aboutHeroImage" value={form.aboutHeroImage} onUpload={handleUpload} onClear={handleClear} />
           </Section>
 
           <Section title="Our Story Section">
-            <Field label="Tag" fieldKey="aboutWhoTag" value={form.aboutWhoTag} onChange={handleChange} />
-            <Field label="Title" fieldKey="aboutWhoTitle" value={form.aboutWhoTitle} onChange={handleChange} />
-            <Field label="Paragraph 1" fieldKey="aboutPara1" value={form.aboutPara1} onChange={handleChange} multiline />
-            <Field label="Paragraph 2" fieldKey="aboutPara2" value={form.aboutPara2} onChange={handleChange} multiline />
+            <RichTextEditor label="Tag" value={form.aboutWhoTag} onChange={(val) => handleChange('aboutWhoTag', val)} />
+            <RichTextEditor label="Title" value={form.aboutWhoTitle} onChange={(val) => handleChange('aboutWhoTitle', val)} />
+            <RichTextEditor label="Paragraph 1" value={form.aboutPara1} onChange={(val) => handleChange('aboutPara1', val)} placeholder="First paragraph about your business..." />
+            <RichTextEditor label="Paragraph 2" value={form.aboutPara2} onChange={(val) => handleChange('aboutPara2', val)} placeholder="Second paragraph..." />
             <ImageUploader label="Story Image" fieldKey="aboutImage" value={form.aboutImage} onUpload={handleUpload} onClear={handleClear} />
           </Section>
 

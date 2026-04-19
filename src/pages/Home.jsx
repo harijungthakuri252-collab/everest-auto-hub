@@ -60,6 +60,14 @@ export default function Home() {
   const ctaSubtitle = c.ctaSubtitle || 'Schedule your appointment today and get your vehicle back in top shape.';
   const ctaPhone = c.ctaPhone || '+61 2 9000 0000';
 
+  // Render plain text or HTML safely
+  const renderText = (text, className, style) => {
+    if (!text) return null;
+    const isHtml = /<[a-z][\s\S]*>/i.test(text);
+    if (isHtml) return <span className={className} style={style} dangerouslySetInnerHTML={{ __html: text }} />;
+    return <span className={className} style={style}>{text}</span>;
+  };
+
   return (
     <div className="home">
       {/* Hero */}
@@ -78,7 +86,9 @@ export default function Home() {
           <h1 className="hero-title">
             <BrandLogo size="hero" />
           </h1>
-          <p className="hero-subtitle">{heroSubtitle}</p>
+          <div className="hero-subtitle">
+            {renderText(heroSubtitle)}
+          </div>
           <div className="hero-actions">
             <Link to="/appointment" className="btn-primary">
               <FiCalendar /> Book Appointment
@@ -102,7 +112,7 @@ export default function Home() {
               ? <>{servicesSectionTitle.replace('Services', '')}<span>Services</span></>
               : servicesSectionTitle}
             </h2>
-            <p className="section-subtitle">{servicesSectionSubtitle}</p>
+            <div className="section-subtitle">{renderText(servicesSectionSubtitle)}</div>
           </div>
           <div className="grid-3">
             {services.map(s => (
@@ -137,9 +147,9 @@ export default function Home() {
             <div className="why-text">
               <p className="section-tag">Why Everest Auto Hub</p>
               <h2 className="section-title">{whyTitle}</h2>
-              <p style={{ color: 'var(--gray)', marginBottom: '2rem', lineHeight: 1.8 }}>
-                {whySubtitle}
-              </p>
+              <div style={{ color: 'var(--gray)', marginBottom: '2rem', lineHeight: 1.8 }}>
+                {renderText(whySubtitle)}
+              </div>
               <div className="why-features">
                 {whyUsFeatures.map((w, i) => (
                   <div key={i} className="why-feature">
@@ -183,7 +193,7 @@ export default function Home() {
                   ? <>Wear Your <span>Passion</span></>
                   : shopBannerTitle}
               </h2>
-              <p>{shopBannerSubtitle}</p>
+              <div>{renderText(shopBannerSubtitle)}</div>
               <Link to="/shop" className="btn-primary">
                 <FiShoppingBag /> Shop Now
               </Link>
@@ -249,7 +259,7 @@ export default function Home() {
                 ? <>{ctaTitle.replace('Service?', '')}<span>Service?</span></>
                 : ctaTitle}
               </h2>
-              <p>{ctaSubtitle}</p>
+              <div>{renderText(ctaSubtitle)}</div>
             </div>
             <div className="cta-actions">
               <Link to="/appointment" className="btn-primary">
